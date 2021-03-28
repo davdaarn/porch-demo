@@ -1,21 +1,20 @@
 <template>
   <div id="app">
-    <navbar></navbar>
-    <router-view class="p-36"/>
+    <navbar class="top-0"></navbar>
+    <router-view class="p-36" />
   </div>
 </template>
 
 <script>
-import Navbar from './components/Navbar';
+import Navbar from "./components/Navbar";
 
 export default {
- components: {
-   Navbar
- }
-}
+  components: {
+    Navbar
+  }
+};
 </script>
 
 
 <style lang="scss">
-
 </style>
