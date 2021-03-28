@@ -1,4 +1,4 @@
-### Notes on refactoring single file submission to cli application
+## Notes on refactoring single file submission to cli application
 
 - Moved set isLoading statement to before the http call to improve responsiveness of the UI.
 
