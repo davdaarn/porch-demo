@@ -1,29 +1,13 @@
-# porch-demo
+### Notes on refactoring single file submission to cli application
 
-## Project setup
-```
-npm install
-```
+- Moved set isLoading statement to before the http call to improve responsiveness of the UI.
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+- Added Vuex as a state management pattern.
 
-### Compiles and minifies for production
-```
-npm run build
-```
+- Created a view for recent posts.
+- Created a component for blog posts.
+- Created a component for comments.
 
-### Run your unit tests
-```
-npm run test:unit
-```
+- The recent posts view handles getting posts and instantiating them.
 
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+- Each blog post is responsible for it's own state, comments, dispatching actions.

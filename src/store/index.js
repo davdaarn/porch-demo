@@ -14,7 +14,6 @@ export default new Vuex.Store({
   },
   actions: {
     setActivePostIndex(context, value) {
-      console.log('setting state', value);
       context.commit('SET_ACTIVE_POST_INDEX', value)
     }
   },
