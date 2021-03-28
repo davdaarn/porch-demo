@@ -1,0 +1,11 @@
+Thank you so much for allowing me to complete the second code challenge on my own time. That was super cool!
+
+I've included 2 files: one with just the requirements met, and one with styles added.
+
+A brief rundown on time spent:
+
+Reading the ACs slowly and carefully, 1-5 took about 30 min.
+
+AC 6 took about 45 min. I knew what I wanted to accomplish right away, it just took me a while to figure out how to get vue to watch for deeply nested changes.
+
+As for the styling, I didn't really keep track. I know I spent a long time getting animations to work on conditionally rendered items, and learned about vue transitions in the process. Other than that I just had fun styling and making things look nice.

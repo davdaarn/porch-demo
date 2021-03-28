@@ -1,0 +1,89 @@
+<!-- 
+As a Financial Professional selling software on the Porch Platform, I would like the ability to view my recent blog posts in order to 
+review what I've written and see what my clients are saying about the content I am posting.
+
+[x] AC: I can see a list of titles from my recent blog posts
+[x] AC: Underneath each blog post title, there is a "View Post" button. When I click this button, the body of the blog post will become visible underneath the blog post title.
+[x] AC: Once a blog post body is visible, the "View Post" button should change to read "Hide Post", and should be underneath the blog post body. 
+[x] AC: When "Hide Post" is clicked, the body of the blog post is hidden, and "View Post" again is shown underneath the post title.
+[x] AC: Only one blog post body should be visible at a time. If a blog post body is visible, and I click "View Post" on another blog post, the post that was open should close while the new blog post I just clicked on becomes visible.
+[x] AC: When the body of a blog post is visible, I see another button labeled "Load Comments" at the bottom of the blog post body. When I click this button, the web app will load all the comments that have been made on that blog post (via API call) and display them underneath the blog post body.S
+-->
+
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.1/axios.min.js"></script>
+  <title>Posts Feed</title>
+  <style></style>
+</head>
+
+<body>
+  <div id="app">
+    <section v-for="(post, index) in posts">
+      <header>
+        <h2>{{ post.title }}</h2>
+      </header>
+      <div v-if="activePost === index">
+        <p>{{ post.body }}</p>
+        <p v-for="comment in post.comments">{{ comment.body }}</p>
+        <button @click="handleGetComments(index)">Load Comments</button>
+        <button @click="activePost = null">Hide Post</button>
+      </div>
+      <button v-else @click="activePost = index">View Post</button>
+    </section>
+  </div>
+
+  <script>
+    new Vue({
+      el: "#app",
+      data() {
+        return {
+          posts: [],
+          activePost: null,
+        };
+      },
+
+      created() {
+        this.handleGetPosts();
+      },
+
+      watch: {
+        posts: {
+          handler: 'handleGetComments',
+          immediate: false,
+          deep: true,
+        }
+      },
+
+      methods: {
+        handleGetPosts() {
+          axios
+            .get("https://jsonplaceholder.typicode.com/posts")
+            .then(response => {
+              return this.posts = response.data.map(x => {
+                return { ...x, comments: [] };
+              });
+            });
+        },
+
+        handleGetComments(postId) {
+          if (typeof postId === 'number') {
+            axios
+              .get(`https://jsonplaceholder.typicode.com/comments?postId=${postId + 1}`)
+              .then(response => {
+                console.log(response.data);
+                return (this.posts[postId].comments = response.data)
+              });
+          }
+        },
+      }
+    });
+  </script>
+</body>
+
+</html>
