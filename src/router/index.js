@@ -7,6 +7,10 @@ Vue.use(VueRouter)
 
 const routes = [{
     path: '/',
+    redirect: '/home/blog/recent'
+  },
+  {
+    path: '/home',
     name: 'Home',
     component: Home
   },
@@ -20,6 +24,7 @@ const routes = [{
   },
   {
     path: '/home/blog/recent',
+    // redirect: '/home/blog/recent',
     name: 'RecentPosts',
     component: RecentPosts
   }
